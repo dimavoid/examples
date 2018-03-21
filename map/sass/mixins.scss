@@ -1,0 +1,23 @@
+@mixin container {
+  min-width: 320px;
+    @media ($tablet-widths) {
+      width: 83%;
+      min-width: 640px;
+      margin: 0 auto;
+    }
+    @media ($desktop-widths) {
+      min-width: 960px;
+      max-width: 960px;
+    }
+}
+
+@mixin reset-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@mixin reset-link {
+  color: #fff;
+  text-decoration: none;
+}

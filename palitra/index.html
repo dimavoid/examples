@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>User page</title>
+    <link rel="stylesheet" href="css/style.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <body>
+    
+    <section id="user-page" class="user-page">
+        <div class="user-page__name">
+            <h2 class="user-page__title">{% trans "User" %} {{ editable_user.email }}</h2>
+        </div>
+        <section class="user-page__search">
+            <label class="user-page__label-request">
+                <preloader-points v-show="loading">
+                </preloader-points>
+                <input
+                    class="user-page__request"
+                    type="text"
+                    @input="onSearch"
+                    v-model="searchRequest"
+                    placeholder='Search'
+                >
+            </label>
+            <button type="button" @click="clearSearch" v-show="searchRequest" style="margin-right: 8px">Clear</button>
+            <p class="user-page__search-message" v-if="brands.length">${ searchMessage }</p>
+        </section>
+
+        <div class="user-page__brands">
+            <h2 class="user-page__title">{% trans "Brands" %}</h2>
+            <p v-if="error">${ error }</p>
+            <div class="user-page__spinner" v-if="!brands.length">
+                <div class="user-page__spinner-bounce1"></div>
+                <div class="user-page__spinner-bounce2"></div>
+                <div class="user-page__spinner-bounce3"></div>
+            </div>
+
+            <p class="user-page__search-message" v-if="!brands.length && searchMessage">${ searchMessage }</p>
+
+            <ul class="user-page__brands-list">
+                <li class="user-page__brand" v-for="(brand, index) in brands" :id="brand.id" :key="brand.id">
+                    <div
+                        class="user-page__brand-title"
+                        :data-id="brand.id"
+                        :data-index="index"
+                        @click="onToggleBrand"
+                    >
+                        <h4>${ brand.title }</h4>
+                        <p>selected ${ brand.personally_available } of ${ brand.total }</p>
+                    </div>
+                    <div class="user-page__brand-content" v-show="brand.show">
+                        <transition name="fade">
+                            <preloader-spinner v-if="brand.show && !brand.products.length">
+                            </preloader-spinner>
+                        </transition>
+                        <transition name="fade">
+                            <products-table
+                                :brand="brand"
+                                :products="brand.products"
+                                v-show="brand.show && brand.products.length"
+                                @toggle="onToggleProduct"
+                                @all-toggle="onAllToggleProduct"
+                            >
+                            </products-table>
+                        </transition>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <script src="js/lodash.min.js"></script>
+    <script src="js/user_page.js"></script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Map</title>
+    <link rel="stylesheet" href="css/style.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALrxdiCspDE0dDWg2zXaLJsXvyfDn0o0I&libraries=drawing"></script>
+  </head>
+
+  <body>
+    <section id="app" class="app">
+      <div class="container-address">
+        <input class="address" type="text" name="text" @change="onAddress" v-model="address">
+      </div>
+
+      <div class="container-coords">
+        <input type="text" name="lat" :value="lat" disabled>
+        <input type="text" name="lng" :value="lng" disabled>
+      </div>
+
+      <div class="container-map">
+        <div id="map" class="map"></div>
+      </div>
+
+      <ul class="list-coords">
+        <li v-for="(coord, index) in coords">
+          <input type="text" name="lat" :value="coord.lat" >
+          <input type="text" name="lng" :value="coord.lng" >
+        </li>
+      </ul>
+    </section>
+
+    <script src="js/jsts.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
