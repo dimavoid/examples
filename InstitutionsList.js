@@ -1,7 +1,5 @@
 const TOP_CATEGORY = document.getElementById('top-category').dataset.topCategory;
 
-const geocoder = new google.maps.Geocoder();
-
 const InstitutionsList = new Vue({
   el: '#institutions-list',
   delimiters: ['${', '}'],
@@ -93,16 +91,16 @@ const InstitutionsList = new Vue({
         .then(stat)
         .then(json)
         .then(res => {
-          console.log('REQUEST ITEMS', res);
+          // console.log('REQUEST ITEMS', res);
 
           this.items = _.cloneDeep(res.results);
           this.nextItems = res.next;
         })
         .catch(res => {
-          console.error(`REQUEST ITEMS`, res);
+          // console.error(`REQUEST ITEMS`, res);
 
           Promise.resolve(res).then(json).then(res => {
-            console.log('ERROR REQUEST ITEMS', res);
+            // console.log('ERROR REQUEST ITEMS', res);
           })
         })
     }, 1000),
@@ -111,7 +109,7 @@ const InstitutionsList = new Vue({
         .then(stat)
         .then(json)
         .then(res => {
-          console.log('REQUEST NEXT ITEMS', res);
+          // console.log('REQUEST NEXT ITEMS', res);
           const results = _.cloneDeep(res.results);
 
           for (let i = 0; i < results.length; i++) {
@@ -121,10 +119,10 @@ const InstitutionsList = new Vue({
           this.nextItems = res.next;
         })
         .catch(res => {
-          console.error(`REQUEST NEXT ITEMS`, res);
+          // console.error(`REQUEST NEXT ITEMS`, res);
 
           Promise.resolve(res).then(json).then(res => {
-            console.log('ERROR REQUEST NEXT ITEMS', res);
+            // console.log('ERROR REQUEST NEXT ITEMS', res);
           })
         })
     },
@@ -135,16 +133,16 @@ const InstitutionsList = new Vue({
         .then(stat)
         .then(json)
         .then(res => {
-          console.log('REQUEST COORDS', res);
+          // console.log('REQUEST COORDS', res);
           
           this.pos.lat = res.results[0].geometry.location.lat;
           this.pos.lng = res.results[0].geometry.location.lng;
         })
         .catch(res => {
-          console.error(`REQUEST COORDS`, res);
+          // console.error(`REQUEST COORDS`, res);
 
           Promise.resolve(res).then(json).then(res => {
-            console.log('ERROR REQUEST COORDS', res);
+            // console.log('ERROR REQUEST COORDS', res);
           })
         })
     },
@@ -155,14 +153,14 @@ const InstitutionsList = new Vue({
         .then(stat)
         .then(json)
         .then(res => {
-          console.log('REQUEST ADDRESS', res);
+          // console.log('REQUEST ADDRESS', res);
           this.address = res.results[0].formatted_address.split(',').slice(0, 3).join(',');
         })
         .catch(res => {
-          console.error(`REQUEST ADDRESS`, res);
+          // console.error(`REQUEST ADDRESS`, res);
 
           Promise.resolve(res).then(json).then(res => {
-            console.log('ERROR REQUEST ADDRESS', res);
+            // console.log('ERROR REQUEST ADDRESS', res);
           })
         })
     },
@@ -182,16 +180,16 @@ const InstitutionsList = new Vue({
         .then(stat)
         .then(json)
         .then(res => {
-          console.log('REQUEST POLYGON', res);
+          // console.log('REQUEST POLYGON', res);
 
           this.polygon.id = res.polygon.id;
           this.polygon.name = res.polygon.name;
         })
         .catch(res => {
-          console.error(`REQUEST POLYGON`, res);
+          // console.error(`REQUEST POLYGON`, res);
 
           Promise.resolve(res).then(json).then(res => {
-            console.log('ERROR REQUEST POLYGON', res);
+            // console.log('ERROR REQUEST POLYGON', res);
           })
         })
     },

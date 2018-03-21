@@ -234,12 +234,12 @@ const app = new Vue({
       });
     },
     onGeoFeth: function(str) {
-      console.log('ON GEO FETCH', str);
+      // console.log('ON GEO FETCH', str);
 
       fetch(`${URL_GEOCODE}${str}&components=administrative_area:Krasnodar|country:RU&key=${API_KEY}`)
         .then(res => res.json())
         .then(res => {
-          console.log('ON GEO FETCH RES', res);
+          // console.log('ON GEO FETCH RES', res);
 
           const address = res.results[0].formatted_address;
           const { lat, lng } = res.results[0].geometry.location;

@@ -1,7 +1,5 @@
 'use strict'
 
-console.log(document.location.href);
-
 Vue.config.devtools = true;
 
 // const URL = `http://palitraapi.spider.ru`;
@@ -116,7 +114,7 @@ const UserPage = new Vue({
       })
         .then(res => res.json())
         .then(res => {
-          console.log('GET BRANDS', res);
+          // console.log('GET BRANDS', res);
   
           if (!res.length) this.error = res.detail;
   
@@ -142,7 +140,7 @@ const UserPage = new Vue({
       })
         .then(res => res.json())
         .then(res => {
-          console.log(`GET PRODUCTS FOR ${ id ? 'BRAND' : 'SEARCH' }`, res);
+          // console.log(`GET PRODUCTS FOR ${ id ? 'BRAND' : 'SEARCH' }`, res);
 
           res.forEach(product => product.loading = false);
           this.loading = false;
@@ -232,7 +230,7 @@ const UserPage = new Vue({
       })
         .then(res => res.json())
         .then(res => {
-          console.log('ALL TOGGLE PRODUCT RES', res);
+          // console.log('ALL TOGGLE PRODUCT RES', res);
           const length = res.articles.length;
 
           if (!length) {

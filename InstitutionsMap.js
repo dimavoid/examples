@@ -23,7 +23,7 @@ const InstitutionsMap = new Vue ({
       .then(stat)
       .then(json)
       .then(res => {
-        console.log('GET TOPS RES', res);
+        // console.log('GET TOPS RES', res);
 
         const rest = res.find(top => top.codename === 'eat' || top.codename === 'food').id;
         const shops = res.find(top => top.codename === 'products' || top.codename === 'goods').id;
@@ -36,10 +36,10 @@ const InstitutionsMap = new Vue ({
         this.requestTopCategoryList('shops', shops);
       })
       .catch(res => {
-        console.error(`GET TOPS`, res);
+        // console.error(`GET TOPS`, res);
 
         Promise.resolve(res).then(json).then(res => {
-          console.log('ERROR GET TOPS', res);
+          // console.log('ERROR GET TOPS', res);
         })
       })
   },
@@ -121,7 +121,7 @@ const InstitutionsMap = new Vue ({
         .then(stat)
         .then(json)
         .then(res => {
-          console.log('REQUEST LIST', res);
+          // console.log('REQUEST LIST', res);
 
           this[type] = _.cloneDeep(res);
         })
@@ -129,7 +129,7 @@ const InstitutionsMap = new Vue ({
           console.error(`REQUEST LIST`, res);
 
           Promise.resolve(res).then(json).then(res => {
-            console.log('ERROR REQUEST LIST', res);
+            // console.log('ERROR REQUEST LIST', res);
           })
         })
     },
