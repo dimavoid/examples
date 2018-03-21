@@ -33,18 +33,3 @@ gulp.task('watch', ['browser-sync', 'sass'], () => {
   gulp.watch('*.html', browserSync.reload);
   gulp.watch('js/**/*.js', browserSync.reload);
 });
-
-gulp.task('clean', () => {
-  return del.sync('dist');
-});
-
-gulp.task('build', ['clean', 'sass'], () => {
-  const buildCss = gulp.src('css/style.min.css')
-    .pipe(gulp.dest('dist/css'))
-
-  const buildJs = gulp.src('js/**/*')
-    .pipe(gulp.dest('dist/js'))
-
-  const buildHtml = gulp.src('*.html')
-    .pipe(gulp.dest('dist'));
-});

@@ -36,18 +36,3 @@ gulp.task('watch', ['browser-sync', 'sass'], function() {
   gulp.watch('*.html', browserSync.reload);
   gulp.watch('js/**/*.js', browserSync.reload);
 });
-
-gulp.task('clean', function() {
-  return del.sync('dist');
-});
-
-gulp.task('build', ['clean', 'sass'], function() {
-  var buildCss = gulp.src('css/style.min.css')
-  .pipe(gulp.dest('dist/css'))
-
-  var buildJs = gulp.src('js/**/*')
-  .pipe(gulp.dest('dist/js'))
-
-  var buildHtml = gulp.src('*.html')
-  .pipe(gulp.dest('dist'));
-});
